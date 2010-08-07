@@ -22,6 +22,8 @@ gem 'ruby-debug'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
+gem 'haml'
+gem 'rails3-generators'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators
