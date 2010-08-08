@@ -7,4 +7,4 @@ Feature: Creating sureys
     When I follow "New Survey"
     And I fill in "Name" with "Clinic Quality"
     And I press "Create Survey"
-    Then I should see "A new Survey has been created."
+    Then I should see "Successfully created survey."
