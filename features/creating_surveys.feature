@@ -30,18 +30,25 @@ Feature: Creating surveys
 
   Scenario: Deleting a survey
     Given there is a survey named "Clinic Quality"
+    And the survey has a question named "Process to get an appointment"
     And I am on the survey page for "Clinic Quality"
     And I follow "Delete Survey"
-    Then I should be on the surveys index
+    Then the survey "Clinic Quality" should be deleted
+    And the question "Process to get an appointment" should be deleted
 
   Scenario: Adding a question to a survey
     Given there is a survey named "Clinic Quality"
     And I am on the survey page for "Clinic Quality"
     And I follow "Add a question to this survey"
     And I fill in "Name" with "Process to get an appointment"
+    And I select "Range" from "question_answer_type"
     And I fill in "Range" with "5"
+    And I fill in "question[answer1]" with "Test Answer"
     And I press "Create Question"
     Then I should see "Process to get an appointment"
+    And the survey "Clinic Quality" should have the questions:
+      | name | answer_type | range | answer1 |
+      | Process to get an appointment | range | 5 | Test Answer |
 
   Scenario: Adding a faulty question to a survey
     Given there is a survey named "Clinic Quality"
