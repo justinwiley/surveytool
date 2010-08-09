@@ -10,7 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100807214658) do
+ActiveRecord::Schema.define(:version => 20100809173553) do
+
+  create_table "questions", :force => true do |t|
+    t.integer  "survey_id"
+    t.string   "name"
+    t.string   "spoken"
+    t.integer  "range"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "answer_type"
+    t.text     "answer1"
+    t.text     "answer2"
+    t.text     "answer3"
+    t.text     "answer4"
+    t.text     "answer5"
+    t.text     "answer6"
+    t.text     "answer7"
+    t.text     "answer8"
+    t.text     "answer9"
+    t.text     "answer10"
+  end
 
   create_table "surveys", :force => true do |t|
     t.string   "name"

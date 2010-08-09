@@ -4,10 +4,19 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-
+require 'rubygems'
 require 'uri'
 require 'cgi'
+require 'term/ansicolor'
+class String
+  include Term::ANSIColor
+end
+
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+
+def show_page
+  puts page.source.gsub(/(<[^>]+>)/,'\1'.magenta).gsub(/(&[^;]+;)/,'\1'.cyan)
+end
 
 module WithinHelpers
   def with_scope(locator)
@@ -18,6 +27,10 @@ World(WithinHelpers)
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
+end
+
+When /I inspect the page/ do
+  show_page
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|

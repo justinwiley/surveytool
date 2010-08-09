@@ -17,6 +17,12 @@ module NavigationHelpers
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
 
+    when /^the survey page for "([^\"]*)"$/i
+      survey_path(Survey.find_by_name($1))
+
+    when /^the surveys index$/i
+      surveys_path
+
     else
       begin
         page_name =~ /the (.*) page/

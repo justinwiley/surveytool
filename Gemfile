@@ -9,13 +9,14 @@ gem 'rails', '3.0.0.rc'
 gem 'mysql'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
 
 # To use debugger
 #gem 'ruby-debug'
+gem 'launchy'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -44,4 +45,5 @@ end
 group :cucumber do
   gem 'cucumber-rails'
   gem 'capybara'
+  gem 'term-ansicolor'
 end

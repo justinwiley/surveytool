@@ -1,6 +1,9 @@
 Surveytool::Application.routes.draw do
   root :to => "surveys#index"
-  resources :surveys
+    
+  resources :surveys do
+    resources :questions
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
