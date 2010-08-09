@@ -1,0 +1,20 @@
+- title "Questions"
+
+%table
+  %tr
+    %th Survey
+    %th Name
+    %th Spoken
+    %th Range start
+    %th Range end
+  - for question in @questions
+    %tr
+      %td= question.survey
+      %td= question.name
+      %td= question.spoken
+      %td= question.range
+      %td= link_to 'Show', question
+      %td= link_to 'Edit', edit_question_path(question)
+      %td= link_to 'Destroy', question, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Question", new_question_path

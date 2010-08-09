@@ -1,0 +1,42 @@
+- title "Viewing Survey - " + @survey.name
+
+%p
+  %strong Spoken:
+  %i
+    - if @survey.spoken.blank?
+      No Spoken Version Found
+    - elsif !File.file? @survey.spoken
+      = "The filename '#{@survey.spoken}' cannot be found."
+    - else
+      = @survey.spoken
+      = audio_tag @survey.spoken
+
+%p
+  %strong Description:
+  - if @survey.desc.blank?
+    %i No Description found
+  - else
+    %p
+    =@survey.desc
+
+%p
+  - unless @survey.questions.empty?
+    %strong Questions:
+    %table
+      - @survey.questions.each_with_index do |question,i|
+        %tr
+          %td= (i + 1).to_s + "."
+          %td= link_to question.name, edit_survey_question_path(@survey,question)
+          %td= link_to 'Delete', [@survey, question], :confirm => 'Are you sure you want to delete this question?', :method => :delete
+
+%p
+  = link_to "Add a question to this survey", new_survey_question_path(@survey)
+
+%p
+  = link_to "New Survey", new_survey_path
+  |
+  = link_to "Edit", edit_survey_path(@survey)
+  |
+  = link_to "Delete Survey", @survey, :confirm => 'Are you sure want to delete this survey, and associated questions?', :method => :delete
+  |
+  = link_to "View All Surveys", surveys_path

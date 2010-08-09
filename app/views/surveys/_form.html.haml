@@ -1,0 +1,16 @@
+= form_for @survey do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :spoken
+    %br
+    = f.text_field :spoken
+  %p
+    = f.label :desc
+    %br
+    = f.text_area :desc
+  %p
+    = f.submit

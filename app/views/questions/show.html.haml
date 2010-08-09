@@ -1,0 +1,21 @@
+- title "Question"
+
+%p
+  %strong Survey:
+  = @question.survey
+%p
+  %strong Name:
+  = @question.name
+%p
+  %strong Spoken:
+  = @question.spoken
+%p
+  %strong Range:
+  = @question.range
+
+%p
+  = link_to "Edit", edit_question_path(@question)
+  |
+  = link_to "Destroy", @question, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", questions_path

@@ -1,0 +1,14 @@
+- title "Surveys"
+
+%table
+  %tr
+    %th Name
+    %th Number of Questions
+    %th Last Edited
+  - for survey in @surveys
+    %tr
+      %td= link_to survey.name, survey_path(survey)
+      %td= survey.questions.count
+      %td= survey.updated_at.in_time_zone('Eastern Time (US & Canada)').strftime "%m-%d-%Y"
+
+%p= link_to "New Survey", new_survey_path
