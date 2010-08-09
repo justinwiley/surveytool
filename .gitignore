@@ -1,6 +1,8 @@
 *~
-.swp
-tmp/*
+capybara*
 .DS_Store
 log/*
-capybara*
+.swp
+test
+test/*
+tmp/*
