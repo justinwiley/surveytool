@@ -2,6 +2,7 @@
 capybara*
 .DS_Store
 log/*
+public/system/*
 .swp
 test
 test/*
