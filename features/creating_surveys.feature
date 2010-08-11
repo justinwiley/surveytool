@@ -3,12 +3,12 @@ Feature: Creating surveys
   As a user I want to create them
 
   Background:
-    Given I am on the homepage
-    When I follow "New Survey"
 
   Scenario: Scenarios should work with flash
 
   Scenario: Creating a survey
+    Given I am on the homepage
+    When I follow "New Survey"
     And I fill in "Name" with "Clinic Quality"
     And I fill in "Desc" with "A general survey of clinic quality"
     And I press "Create Survey"
@@ -22,9 +22,10 @@ Feature: Creating surveys
     And I am on the surveys page
     When I follow "Clinic Quality"
     Then I should be on the survey page for "Clinic Quality"
-    
 
   Scenario: Creating a bad survey
+    Given I am on the homepage
+    When I follow "New Survey"
     And I press "Create Survey"
     Then I should see "Name can't be blank"
 
@@ -44,6 +45,7 @@ Feature: Creating surveys
     And I select "Range" from "question_answer_type"
     And I fill in "Range" with "5"
     And I fill in "question[answer1]" with "Test Answer"
+    And attach the file "public/testing.wav" to "Spoken"
     And I press "Create Question"
     Then I should see "Process to get an appointment"
     And the survey "Clinic Quality" should have the questions:
@@ -63,3 +65,24 @@ Feature: Creating surveys
     And I follow "Add a question to this survey"
     And I press "Create Question"
     Then I should see "Name can't be blank"
+
+  Scenario: Surveys and questions should have audio recordings
+    Given I am on the homepage
+    When I follow "New Survey"
+    When I fill in "Name" with "Clinic Quality"
+    And I fill in "Desc" with "A general survey of clinic quality"
+    And attach the file "public/testing.wav" to "Spoken"
+    And I press "Create Survey"
+    Then I should see audio controls for the survey "Clinic Quality"
+    When I follow "Remove Spoken Version"
+    Then I should not see audio controls for "public/testing.wav"
+    When I follow "Add a question to this survey"
+    And I fill in "Name" with "Process to get an appointment"
+    And I press "Create Question"
+    And I follow "Process to get an appointment"
+    And attach the file "public/testing.wav" to "Spoken"
+    And I press "Update Question"
+    Then I should see audio controls for the question "Process to get an appointment"
+    And I follow "Remove Spoken Version"
+    Then I should not see audio controls for "public/testing.wav"
+

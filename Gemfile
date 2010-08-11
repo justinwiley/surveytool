@@ -25,6 +25,7 @@ gem 'launchy'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'haml'
+gem 'paperclip'
 gem 'rails3-generators'
 gem "nifty-generators"
 
@@ -45,5 +46,7 @@ end
 group :cucumber do
   gem 'cucumber-rails'
   gem 'capybara'
+  gem "rspec"
+  gem 'rspec-rails', '2.0.0.beta.11'
   gem 'term-ansicolor'
 end

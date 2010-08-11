@@ -14,7 +14,7 @@ end
 
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
-def show_page
+def show_source
   puts page.source.gsub(/(<[^>]+>)/,'\1'.magenta).gsub(/(&[^;]+;)/,'\1'.cyan)
 end
 
@@ -30,7 +30,7 @@ Given /^(?:|I )am on (.+)$/ do |page_name|
 end
 
 When /I inspect the page/ do
-  show_page
+  show_source
 end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
@@ -225,6 +225,10 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   else
     assert_equal expected_params, actual_params
   end
+end
+
+Then /^vs$/ do
+  show_source
 end
 
 Then /^show me the page$/ do

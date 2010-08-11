@@ -4,7 +4,7 @@
   Effect.toggle('answers');
   }
     
-= form_for [@survey, @question] do |f|
+= form_for [@survey, @question], :html => { :multipart => true } do |f|
   = f.error_messages
   %p
     = f.label :name
@@ -12,8 +12,12 @@
     = f.text_field :name
   %p
     = f.label :spoken
+    -if @question.spoken_file_name
+      %br
+      %i= @question.spoken_file_name
+      %td= link_to "Remove Spoken Version", remove_question_spoken_path(@survey,@question), :confirm => "Are you sure you want to remove this audio file?"
     %br
-    = f.text_field :spoken
+    = f.file_field :spoken
   %p
     = f.label :question_type
     %br

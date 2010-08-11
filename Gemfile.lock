@@ -69,6 +69,9 @@ GEM
     mysql (2.8.1)
     nifty-generators (0.4.0)
     nokogiri (1.4.3.1)
+    paperclip (2.3.3)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.2.1)
     rack-mount (0.6.9)
@@ -129,8 +132,10 @@ DEPENDENCIES
   launchy
   mysql
   nifty-generators
+  paperclip
   rails (= 3.0.0.rc)
   rails3-generators
+  rspec
   rspec-rails (= 2.0.0.beta.11)
   term-ansicolor
   unicorn

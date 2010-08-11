@@ -1,32 +1,42 @@
 - title "Viewing Survey - " + @survey.name
 
 %p
-  %strong Spoken:
-  %i
-    - if @survey.spoken.blank?
-      No Spoken Version Found
-    - elsif !File.file? @survey.spoken
-      = "The filename '#{@survey.spoken}' cannot be found."
-    - else
-      = @survey.spoken
-      = audio_tag @survey.spoken
+  %strong Spoken Version of Survey Description:
+  %table
+    %tr
+  - if @survey.spoken_file_name.blank?
+    %td
+      %i No Spoken Version Found
+  - else
+    %td
+      %audio{:src => @survey.spoken.url, :controls => 'controls', :type => @survey.spoken.content_type}
+    %td= link_to "Remove Spoken Version", remove_spoken_path(@survey), :confirm => "Are you sure you want to remove this audio file?"
+        
 
 %p
   %strong Description:
   - if @survey.desc.blank?
     %i No Description found
   - else
-    %p
     =@survey.desc
 
 %p
   - unless @survey.questions.empty?
     %strong Questions:
     %table
+      %th Number
+      %th Name
+      %th Audio
+      %th Delete
       - @survey.questions.each_with_index do |question,i|
         %tr
           %td= (i + 1).to_s + "."
           %td= link_to question.name, edit_survey_question_path(@survey,question)
+          %td
+            -if question.spoken_file_name.blank?
+              %i No Spoken Version Found
+            -else
+              %audio{:src => question.spoken.url, :controls => 'controls', :type => question.spoken.content_type}
           %td= link_to 'Delete', [@survey, question], :confirm => 'Are you sure you want to delete this question?', :method => :delete
 
 %p
