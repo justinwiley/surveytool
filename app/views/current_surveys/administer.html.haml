@@ -1,0 +1,7 @@
+- title @survey.name
+%p
+  %strong Description:
+  =@survey.desc
+  .audioplayer
+    %audio{:src => @survey.spoken.url, :controls => 'controls', :type => @survey.spoken.content_type}
+  
