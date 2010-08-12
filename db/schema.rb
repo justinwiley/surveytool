@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100809235448) do
+ActiveRecord::Schema.define(:version => 20100812140245) do
+
+  create_table "answers", :force => true do |t|
+    t.integer  "question_id"
+    t.string   "name"
+    t.string   "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "spoken_file_name"
+    t.string   "spoken_content_type"
+    t.integer  "spoken_file_size"
+    t.datetime "spoken_updated_at"
+  end
 
   create_table "questions", :force => true do |t|
     t.integer  "survey_id"
@@ -19,16 +31,6 @@ ActiveRecord::Schema.define(:version => 20100809235448) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "answer_type"
-    t.text     "answer1"
-    t.text     "answer2"
-    t.text     "answer3"
-    t.text     "answer4"
-    t.text     "answer5"
-    t.text     "answer6"
-    t.text     "answer7"
-    t.text     "answer8"
-    t.text     "answer9"
-    t.text     "answer10"
     t.string   "spoken_file_name"
     t.string   "spoken_content_type"
     t.integer  "spoken_file_size"

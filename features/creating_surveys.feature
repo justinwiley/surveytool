@@ -44,13 +44,12 @@ Feature: Creating surveys
     And I fill in "Name" with "Process to get an appointment"
     And I select "Range" from "question_answer_type"
     And I fill in "Range" with "5"
-    And I fill in "question[answer1]" with "Test Answer"
     And attach the file "public/testing.wav" to "Spoken"
     And I press "Create Question"
     Then I should see "Process to get an appointment"
     And the survey "Clinic Quality" should have the questions:
-      | name | answer_type | range | answer1 |
-      | Process to get an appointment | range | 5 | Test Answer |
+      | name | answer_type | range |
+      | Process to get an appointment | range | 5 |
 
   Scenario: Adding a faulty question to a survey
     Given there is a survey named "Clinic Quality"

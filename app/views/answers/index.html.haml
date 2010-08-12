@@ -1,0 +1,17 @@
+- title "Answers"
+
+%table
+  %tr
+    %th Question
+    %th Name
+    %th Text
+  - for answers in @answers
+    %tr
+      %td= answers.question
+      %td= answers.name
+      %td= answers.text
+      %td= link_to 'Show', answers
+      %td= link_to 'Edit', edit_answers_path(answers)
+      %td= link_to 'Destroy', answers, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Answers", new_answers_path

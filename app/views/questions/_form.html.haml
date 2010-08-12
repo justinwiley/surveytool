@@ -3,7 +3,7 @@
   Effect.toggle('range');
   Effect.toggle('answers');
   }
-    
+
 = form_for [@survey, @question], :html => { :multipart => true } do |f|
   = f.error_messages
   %p
@@ -21,18 +21,24 @@
   %p
     = f.label :question_type
     %br
-    = select :question, :answer_type, Question::QUESTION_TYPES, {}, {:onchange => 'swap();'}
+    = select :question, :answer_type, Question::QUESTION_TYPES, {:default => 'multiple_choice'}, {:onchange => 'swap();'}
   %div#range{:style => 'display:none'}
     = f.label :range
     %br
     = f.text_field :range
-  %div#answers
-    %table
-      -for i in (1..10)
-        %tr
-          %td
-            =f.label "Answer #{i}"
-          %td
-            =f.text_field "answer#{i}"
+  -if @question.id
+    %div#answers
+      =link_to "Add an answer to this question", new_survey_question_answer_path(@survey,@question)
+      -unless @question.answers.empty?
+        %table
+          %th Display Order
+          %th Name
+          %th Text
+          -@question.answers.each_with_index do |answer,num|
+            %tr
+              %td= "#{num + 1}."
+              %td= link_to answer.name, edit_survey_question_answer_path(@survey,@question,answer)
+              %td= answer.text
+              %td= link_to 'Delete', [@survey, @question, answer], :confirm => 'Are you sure you want to delete this question?', :method => :delete
   %p
     = f.submit

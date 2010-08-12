@@ -20,6 +20,9 @@ module NavigationHelpers
     when /^the survey page for "([^\"]*)"$/i
       survey_path(Survey.find_by_name($1))
 
+    when /^the question page for "([^\"]*)" in survey "([^\"]*)"$/i
+      edit_survey_question_path(Survey.find_by_name($2),Question.find_by_name($1))
+
     when /^the surveys index$/i
       surveys_path
 

@@ -1,0 +1,24 @@
+= form_for [@survey,@question,@answer] do |f|
+  = f.error_messages
+  %p
+    = f.label :name
+    %br
+    = f.text_field :name
+  %p
+    = f.label :text
+    %br
+    = f.text_field :text
+  %p
+    = f.label :spoken
+    -if @answer.spoken_file_name
+      %br
+      %i= @answer.spoken_file_name
+      %td= link_to "Remove Spoken Version", remove_question_spoken_path(@answer,@question), :confirm => "Are you sure you want to remove this audio file?"
+    %br
+    = f.file_field :spoken
+  %p
+    = f.submit
+  %p
+    = link_to "Back to Question", edit_survey_question_path(@survey,@question)
+    |
+    = link_to "Back to Survey", survey_path(@survey)

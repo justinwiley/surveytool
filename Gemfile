@@ -43,6 +43,10 @@ group :test do
   gem 'rspec-rails', '2.0.0.beta.11'
 end
 
+group :development do
+  gem "rails-footnotes"
+end
+
 group :cucumber do
   gem 'cucumber-rails'
   gem 'capybara'

@@ -12,7 +12,6 @@ Then /^the survey "([^"]*)" should have the questions:$/ do |survey_name, table|
     q = s.questions.find_by_name hash[:name]
     q.answer_type.should == hash[:answer_type]
     q.range.should == hash[:range].to_i
-    q.answer1.should == hash[:answer1]
   end
 end
 

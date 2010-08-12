@@ -86,6 +86,7 @@ GEM
       activesupport (= 3.0.0.rc)
       bundler (>= 1.0.0.rc.1)
       railties (= 3.0.0.rc)
+    rails-footnotes (3.6.7)
     rails3-generators (0.12.1)
     railties (3.0.0.rc)
       actionpack (= 3.0.0.rc)
@@ -134,6 +135,7 @@ DEPENDENCIES
   nifty-generators
   paperclip
   rails (= 3.0.0.rc)
+  rails-footnotes
   rails3-generators
   rspec
   rspec-rails (= 2.0.0.beta.11)
