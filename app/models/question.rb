@@ -8,6 +8,8 @@ class Question < ActiveRecord::Base
   attr_accessible :survey, :name, :spoken, :range, :answer_type
   
   validates_presence_of :name
+
+  # ahhhhhh!  DRY DRY DRY
   
   def remove_spoken!
     self.spoken.clear

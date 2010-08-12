@@ -3,7 +3,7 @@ Surveytool::Application.routes.draw do
   
   match 'survey/:id/remove_spoken' => 'surveys#remove_spoken', :as => :remove_spoken, :method => :delete
   match 'survey/:survey_id/question/:id/remove_spoken' => 'questions#remove_spoken', :as => :remove_question_spoken, :method => :delete
-  match 'question/:question_id/answer/:id/remove_spoken' => 'answers#remove_spoken', :as => :remove_answer_spoken, :method => :delete
+  match 'survey/:survey_id/question/:question_id/answer/:id/remove_spoken' => 'answers#remove_spoken', :as => :remove_answer_spoken, :method => :delete
   
   resources :surveys do
     resources :questions do

@@ -1,10 +1,6 @@
 class QuestionsController < ApplicationController
-  before_filter :find_survey, :only => [:index,:new,:create,:edit,:update,:destroy,:remove_spoken]
+  before_filter :find_survey, :only => [:new,:create,:edit,:update,:destroy,:remove_spoken]
   before_filter :find_question, :only => [:edit,:update,:destroy,:remove_spoken]
-
-  def index
-    @questions = Question.all
-  end
   
   def new
     @question = @survey.questions.build

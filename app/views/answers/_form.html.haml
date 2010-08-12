@@ -1,4 +1,4 @@
-= form_for [@survey,@question,@answer] do |f|
+= form_for [@survey,@question,@answer], :html => { :multipart => true } do |f|
   = f.error_messages
   %p
     = f.label :name
@@ -13,7 +13,7 @@
     -if @answer.spoken_file_name
       %br
       %i= @answer.spoken_file_name
-      %td= link_to "Remove Spoken Version", remove_question_spoken_path(@answer,@question), :confirm => "Are you sure you want to remove this audio file?"
+      %td= link_to "Remove Spoken Version", remove_answer_spoken_path(@survey,@question,@answer), :confirm => "Are you sure you want to remove this audio file?"
     %br
     = f.file_field :spoken
   %p

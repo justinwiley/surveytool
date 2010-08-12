@@ -3,7 +3,11 @@ Given /^there is a survey named "([^\"]*)"$/ do |name|
 end
 
 Given /^the survey has a question named "([^\"]*)"$/ do |name|
-  @survey.questions.create! :name => name
+  @question = @survey.questions.create! :name => name
+end
+
+Given /^the question "([^"]*)" has an answer "([^"]*)" text "([^"]*)"$/ do |question, name, text|
+  @answer = Question.find_by_name(question).answers.create! :name => name, :text => text
 end
 
 Then /^the survey "([^"]*)" should have the questions:$/ do |survey_name, table|

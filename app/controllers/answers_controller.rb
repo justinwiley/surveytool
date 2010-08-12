@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
-  before_filter :find_survey, :only => [:edit,:new]
+  before_filter :find_survey, :only => [:create,:edit,:new]
   before_filter :find_question
-  before_filter :find_answer, :only => [:edit,:update,:destroy]
+  before_filter :find_answer, :only => [:edit,:update,:destroy,:remove_spoken]
   
   def new
     @answer = @question.answers.build
@@ -31,8 +31,17 @@ class AnswersController < ApplicationController
   
   def destroy
     @answer.destroy
-    flash[:notice] = "Successfully destroyed answer."
+    flash[:notice] = "Successfully deleted answer."
     redirect_to_question_edit
+  end
+  
+  def remove_spoken
+    if @answer.remove_spoken!
+      flash[:notice] = "Audio file removed."
+      redirect_to_question_edit
+    else
+      flash[:error] = "Audio file could not be removed."
+    end
   end
   
   private
