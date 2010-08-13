@@ -15,7 +15,7 @@ end
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 
 def show_source
-  puts page.source.gsub(/(<[^>]+>)/,'\1'.magenta).gsub(/(&[^;]+;)/,'\1'.cyan)
+  puts page.source.gsub(/(<[^>]+>)/,'\1'.magenta).gsub(/(&[^;]+;)/,'\1'.cyan).gsub(/\="([^"]+)"/,'="'+('\1'.blue)+'"')
 end
 
 module WithinHelpers

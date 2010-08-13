@@ -4,7 +4,7 @@ Feature: Creating surveys
 
   Background:
   
-  Scenario: Creating a survey
+  Scenario: Creating a new survey
     Given I am on the homepage
     When I follow "New Survey"
     And I fill in "Name" with "Clinic Quality"

@@ -10,6 +10,7 @@ module NavigationHelpers
 
     when /the home\s?page/
       '/'
+
     when /the new current_survey page/
       new_current_survey_path
 
