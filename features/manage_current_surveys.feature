@@ -20,9 +20,9 @@ Feature: Manage Current Surveys
     And I should see audio controls for the survey "Clinic Quality"
     
   Scenario: Creating a new respondent and seeing the first question
-    Then pending
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
+    Then pending
     Then I should see "Question 1: Process to get an appointment"
     And I should see "Process to get an appointment" questions
     And I should see audio controls for the question "Process to get an appointment"
