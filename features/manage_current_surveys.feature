@@ -22,22 +22,34 @@ Feature: Manage Current Surveys
   Scenario: Creating a new respondent and seeing the first question
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
-    Then pending
-    Then I should see "Question 1: Process to get an appointment"
-    And I should see "Process to get an appointment" questions
+    Then I should see "Question 1."
+    And I should see "Process to get an appointment"
+    And I should see "1" within "div.answers"
+    And I should see "2" within "div.answers"
+    And I should see "3" within "div.answers"
+    And I should see "4" within "div.answers"
+    And I should see "5" within "div.answers"
     And I should see audio controls for the question "Process to get an appointment"
+
+  Scenario: Answering questions
+    Given I follow "Administer this Survey"
+    And I follow "Start Survey"
+    Then a respondent should be created for "Clinic Quality"
     
   Scenario: Answering questions
-    Then pending
-    Given I have started the survey "Clinic Quality"
-    And I check "answer_3"
-    And I follow "Next Question"
-    Then I should "Answer saved"
-    And I should see "What are the main reasons you have attended the SHC" questions
+    Given I follow "Administer this Survey"
+    And I follow "Start Survey"
+    And I choose "range_3"
+    And I press "Next Question"
+    Then I should see "Answer saved"
+    And there should be a saved response for "Process to get an appointment" range "3"
+    And I should see "What are the main reasons you have attended the SHC"
     And I should see audio controls for the answer "A"
-    When I check "answer_1"
-    And I follow "Next Question"
+    Then pending
+    When I choose answer for "Location"
+    And I press "Next Question"
     Then I should see "Answer Saved"
+    And there should be a saved response for "What are the main reasons you have attended the SHC" answer "Location"
     And I should see "Thank you for completing the survey"
     And I there should respondent data for "Clinic Quality"
       

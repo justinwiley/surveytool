@@ -6,10 +6,12 @@ Surveytool::Application.routes.draw do
   match 'survey/:survey_id/question/:id/remove_spoken' => 'questions#remove_spoken', :as => :remove_question_spoken, :method => :delete
   match 'survey/:survey_id/question/:question_id/answer/:id/remove_spoken' => 'answers#remove_spoken', :as => :remove_answer_spoken, :method => :delete
   
-  match 'current_survey/:survey_id/show' => 'current_surveys#show', :as => 'show_survey', :method => :get
-  match 'current_survey/:survey_id/start' => 'current_surveys#start', :as => 'start_survey', :method => :post
-  match 'current_survey/:survey_id/respondent/:respondent_id/next_question' => 'current_surveys#next_question', :as => 'next_question', :method => :post
-    
+  match 'current_survey/:survey_id/show' => 'current_surveys#show', :as => 'show_current_survey', :method => :get
+  match 'current_survey/:survey_id/start' => 'current_surveys#start', :as => 'start_current_survey', :method => :post
+  match 'current_survey/display_question' => 'current_surveys#display_question', :as => 'display_question',
+   :method => :post
+  
+  
   resources :surveys do
     resources :questions do
       resources :answers

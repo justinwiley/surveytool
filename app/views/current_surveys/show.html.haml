@@ -4,4 +4,4 @@
   =@survey.desc
   .audioplayer
     %audio{:src => @survey.spoken.url, :controls => 'controls', :type => @survey.spoken.content_type}
-  =link_to "Start Survey", start_survey_path(@survey)
+  =link_to "Start Survey", start_current_survey_path(@survey.id)

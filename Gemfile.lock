@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.0.rc)
       activesupport (= 3.0.0.rc)
     activesupport (3.0.0.rc)
+    acts_as_list (0.1.2)
     arel (0.4.0)
       activesupport (>= 3.0.0.beta)
     builder (2.1.2)
@@ -116,8 +117,6 @@ GEM
       polyglot (>= 0.3.1)
     trollop (1.16.2)
     tzinfo (0.3.22)
-    unicorn (1.1.2)
-      rack
     webrat (0.7.1)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -127,6 +126,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   capybara
   cucumber-rails
   haml
@@ -140,4 +140,3 @@ DEPENDENCIES
   rspec
   rspec-rails (= 2.0.0.beta.11)
   term-ansicolor
-  unicorn

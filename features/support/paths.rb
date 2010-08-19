@@ -28,7 +28,7 @@ module NavigationHelpers
       survey_path(Survey.find_by_name($1))
 
     when /^the survey start page for "([^\"]*)"$/i
-      show_survey_path(Survey.find_by_name($1))
+      show_current_survey_path(Survey.find_by_name($1))
 
     when /^the question page for "([^\"]*)" in survey "([^\"]*)"$/i
       edit_survey_question_path(Survey.find_by_name($2),Question.find_by_name($1))

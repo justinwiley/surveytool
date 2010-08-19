@@ -1,1 +1,19 @@
-@question
+="Question #{@question.position}."
+=@question.name
+
+.answers
+  = form_tag display_question_url, :survey => @survey do
+    =hidden_field_tag 'survey_id', @survey.id
+    =hidden_field_tag 'question_id', @question.id
+    -if @question.multiple_choice?
+      -for answer in @question.answers.order :position
+        =answer.name
+        =answer.text
+        = radio_button_tag :answer, answer.id
+        %br
+    -else
+      -for answer_num in (1..@question.range.to_i)
+        = label_tag "range_#{answer_num}"
+        = radio_button_tag :range, answer_num
+    =submit_tag "Previous Question" if @previous_question
+    =submit_tag "Next Question" if @next_question

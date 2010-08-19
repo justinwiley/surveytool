@@ -66,8 +66,8 @@
   |
   = link_to "Edit", edit_survey_path(@survey)
   |
-  = link_to "Delete Survey", @survey, :confirm => 'Are you sure want to delete this survey, and associated questions?', :method => :delete
+  = link_to "Delete Survey", @survey, :confirm => 'Are you sure you want to delete this survey, and associated questions, AND associated reports and responses??', :method => :delete
   |
   = link_to "View All Surveys", surveys_path
   |
-  = link_to "Administer this Survey", show_survey_path(@survey)
+  = link_to "Administer this Survey", show_current_survey_path(@survey)

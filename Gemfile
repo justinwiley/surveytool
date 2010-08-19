@@ -7,9 +7,11 @@ gem 'rails', '3.0.0.rc'
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mysql'
+gem 'paperclip'
+gem "acts_as_list"
 
 # Use unicorn as the web server
-gem 'unicorn'
+#gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
@@ -25,7 +27,6 @@ gem 'launchy'
 # gem 'aws-s3', :require => 'aws/s3'
 
 gem 'haml'
-gem 'paperclip'
 gem 'rails3-generators'
 gem "nifty-generators"
 
