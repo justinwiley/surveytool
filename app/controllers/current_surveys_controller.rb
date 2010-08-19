@@ -21,16 +21,24 @@ class CurrentSurveysController < ApplicationController
     response = Response.find_or_create_by_question_id_and_respondent_id(current_question.id, @respondent.id)
     if params[:range]
       response.update_attributes(:range => params[:range])
+    elsif params[:answer]
+      response.update_attributes(:answer_id => params[:answer])
     end
-    flash[:notice] = "Answer saved."
+    if params[:range].blank? && params[:answer].blank?
+      flash[:error] = "You must select an answer for this question."
+    else
+      flash[:notice] = "Answer saved."
+    end
     
-    @display_question = if params[:commit] == 'Next Question'
+    @display_question = if !flash[:error].blank?
+      current_question
+    elsif params[:commit] == 'Next Question'
       current_question.lower_item
     elsif params[:commit] == 'Previous Question'
       current_question.higher_item
     end
 
-    if params[:commit] == 'Finish'
+    if params[:commit] == 'Finish' && flash[:error].blank?
       redirect_to finish_url(@survey)
     else
       @next_question = @display_question.lower_item

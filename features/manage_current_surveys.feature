@@ -53,17 +53,18 @@ Feature: Manage Current Surveys
     And I should see "Question 2 of 2"
     And there should be a saved response for "Process to get an appointment" range "3"
     And I should see "What are the main reasons you have attended the SHC"
-    When I choose answer for "Location"
+    When I choose the answer for "Location"
     And I press "Finish"
     Then I should see "You have successfully completed the survey"
     And there should be a saved response for "What are the main reasons you have attended the SHC" answer "Location"
   
-  Scenario: Navigation between questions
+  Scenario: Failing to select an answer
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
-    Then pending
-
-
+    And I press "Next Question"
+    Then I should see "You must select an answer for this question"
+    And I should see "Question 1 of 2"
+    
   Scenario: Warning the administrator if no answers for a multiple choice question
     Then pending
     Given the survey has a question named "Faulty Question" of type "Multiple Choice"

@@ -53,7 +53,7 @@ Then /^there should be a saved response for "([^"]*)" ([a-z]+) "([^"]*)"$/ do |q
   if answer_type == 'range'
     r.range.should == text.to_i
   else
-    r.answer.should == q.answers.find_by_name(text)
+    r.answer.should == q.answers.find_by_text(text)
   end
 end
 

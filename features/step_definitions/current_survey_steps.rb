@@ -13,7 +13,7 @@ Then /^I should see the following current_surveys:$/ do |expected_current_survey
   expected_current_surveys_table.diff!(tableish('table tr', 'td,th'))
 end
 
-When /^I choose answer for "([^"]*)"$/ do |answer_text|
+When /^I choose the answer for "([^"]*)"$/ do |answer_text|
   a = Answer.find_by_text answer_text
   choose("answer_#{a.id}")
 end
