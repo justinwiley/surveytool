@@ -48,11 +48,12 @@ Then /^I should not see audio controls for "([^"]*)"$/ do |filename|
 end
 
 Then /^there should be a saved response for "([^"]*)" ([a-z]+) "([^"]*)"$/ do |question,answer_type,text|
-  r = Question.find_by_name(question).responses.first
+  q = Question.find_by_name(question)
+  r = q.responses.first
   if answer_type == 'range'
     r.range.should == text.to_i
   else
-    r.answers.find_by_name(text).should_not be_nil
+    r.answer.should == q.answers.find_by_name(text)
   end
 end
 

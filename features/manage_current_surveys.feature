@@ -22,7 +22,7 @@ Feature: Manage Current Surveys
   Scenario: Creating a new respondent and seeing the first question
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
-    Then I should see "Question 1."
+    Then I should see "Question 1 of 2"
     And I should see "Process to get an appointment"
     And I should see "1" within "div.answers"
     And I should see "2" within "div.answers"
@@ -39,7 +39,7 @@ Feature: Manage Current Surveys
     And I press "Next Question"
     Then I should see audio controls for the answer "A"
 
-  Scenario: Answering questions
+  Scenario: Starting survey creates respondent
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
     Then a respondent should be created for "Clinic Quality"
@@ -50,16 +50,20 @@ Feature: Manage Current Surveys
     And I choose "range_3"
     And I press "Next Question"
     Then I should see "Answer saved"
+    And I should see "Question 2 of 2"
     And there should be a saved response for "Process to get an appointment" range "3"
     And I should see "What are the main reasons you have attended the SHC"
     When I choose answer for "Location"
-    Then pending
-    And I press "Next Question"
-    Then I should see "Answer Saved"
+    And I press "Finish"
+    Then I should see "You have successfully completed the survey"
     And there should be a saved response for "What are the main reasons you have attended the SHC" answer "Location"
-    And I should see "Thank you for completing the survey"
-    And I there should respondent data for "Clinic Quality"
-      
+  
+  Scenario: Navigation between questions
+    Given I follow "Administer this Survey"
+    And I follow "Start Survey"
+    Then pending
+
+
   Scenario: Warning the administrator if no answers for a multiple choice question
     Then pending
     Given the survey has a question named "Faulty Question" of type "Multiple Choice"

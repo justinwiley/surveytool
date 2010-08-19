@@ -1,4 +1,4 @@
-="Question #{@display_question.position}."
+="Question #{@display_question.position} of #{@survey.questions.count}"
 =@display_question.name
 
 .answers
@@ -17,6 +17,6 @@
         = radio_button_tag :range, answer_num
     %br
     =submit_tag "Previous Question" if @previous_question
-    =submit_tag @next_question ? "Next Question" : "Finish"
+    =submit_tag @display_question.last? ? "Finish" : "Next Question"
     %br
     =link_to "Start Over", start_current_survey_path(@survey)
