@@ -18,7 +18,7 @@ Feature: Manage Current Surveys
     Then I should be on the survey start page for "Clinic Quality"
     And I should see "Description for Clinic Quality"
     And I should see audio controls for the survey "Clinic Quality"
-    
+  
   Scenario: Creating a new respondent and seeing the first question
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
@@ -29,7 +29,15 @@ Feature: Manage Current Surveys
     And I should see "3" within "div.answers"
     And I should see "4" within "div.answers"
     And I should see "5" within "div.answers"
-    And I should see audio controls for the question "Process to get an appointment"
+
+  Scenario: Answers and questions should have audio files
+    Given I follow "Administer this Survey"
+    And I follow "Start Survey"
+    Then pending
+    Then I should see audio controls for the question "Process to get an appointment"
+    When I choose "range_3"
+    And I press "Next Question"
+    Then I should see audio controls for the answer "A"
 
   Scenario: Answering questions
     Given I follow "Administer this Survey"
@@ -44,9 +52,8 @@ Feature: Manage Current Surveys
     Then I should see "Answer saved"
     And there should be a saved response for "Process to get an appointment" range "3"
     And I should see "What are the main reasons you have attended the SHC"
-    And I should see audio controls for the answer "A"
-    Then pending
     When I choose answer for "Location"
+    Then pending
     And I press "Next Question"
     Then I should see "Answer Saved"
     And there should be a saved response for "What are the main reasons you have attended the SHC" answer "Location"

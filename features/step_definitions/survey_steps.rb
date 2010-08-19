@@ -4,7 +4,7 @@ end
 
 Given /^the survey has a question named "([^\"]*)"(?: of type "([^"]*)")?$/ do |name,type|
   @question = @survey.questions.build :name => name
-  @question.answer_type = type.tr(' ','').tableize unless type.nil?
+  @question.answer_type = type.tr(' ','_').downcase unless type.nil?
   @question.range = 5 if type == "Range"
   @question.save!
 end
@@ -38,9 +38,9 @@ end
 
 Then /^I should see audio controls for the ([a-zA-Z]+) "([^"]*)"$/ do |model,name|
   spoken = model_find_by_name(model,name).spoken
-  #pending
-  #puts spoken.url + "   " + spoken.content_type
-  #find("audio_tag", :src => spoken.url, :controls => 'controls', :content_type => spoken.content_type).should_not be_nil
+  pending
+  puts spoken.url + "   " + spoken.content_type
+  find("audio_tag", :src => spoken.url, :controls => 'controls', :content_type => spoken.content_type).should_not be_nil
 end
 
 Then /^I should not see audio controls for "([^"]*)"$/ do |filename|

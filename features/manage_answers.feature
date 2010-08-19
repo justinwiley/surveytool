@@ -4,7 +4,7 @@ Feature: Answers management
 
   Background:
     Given there is a survey named "Clinic Quality"
-    And the survey has a question named "What are the main reasons you have attended the SHC"
+    And the survey has a question named "What are the main reasons you have attended the SHC" of type "Multiple Choice"
     And I am on the question page for "What are the main reasons you have attended the SHC" in survey "Clinic Quality"
     And I select "Multiple Choice" from "question_answer_type"
 

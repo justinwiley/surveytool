@@ -1,19 +1,22 @@
-="Question #{@question.position}."
-=@question.name
+="Question #{@display_question.position}."
+=@display_question.name
 
 .answers
   = form_tag display_question_url, :survey => @survey do
     =hidden_field_tag 'survey_id', @survey.id
-    =hidden_field_tag 'question_id', @question.id
-    -if @question.multiple_choice?
-      -for answer in @question.answers.order :position
+    =hidden_field_tag 'question_id', @display_question.id
+    -if @display_question.multiple_choice?
+      -for answer in @display_question.answers
         =answer.name
         =answer.text
         = radio_button_tag :answer, answer.id
         %br
     -else
-      -for answer_num in (1..@question.range.to_i)
+      -for answer_num in (1..@display_question.range.to_i)
         = label_tag "range_#{answer_num}"
         = radio_button_tag :range, answer_num
+    %br
     =submit_tag "Previous Question" if @previous_question
-    =submit_tag "Next Question" if @next_question
+    =submit_tag @next_question ? "Next Question" : "Finish"
+    %br
+    =link_to "Start Over", start_current_survey_path(@survey)

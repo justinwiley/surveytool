@@ -11,6 +11,8 @@ class Question < ActiveRecord::Base
   has_attached_file :spoken
   
   validates_presence_of :name
+  validates_inclusion_of :answer_type, :in => QUESTION_TYPES.map{|i| i.second}
+  validates_numericality_of :range, :if => Proc.new{|q| q.answer_type == 'range'}
 
   def multiple_choice?
     answer_type == 'multiple_choice'
@@ -18,10 +20,6 @@ class Question < ActiveRecord::Base
   
   def range?
     answer_type == 'range'
-  end
-
-  def answer_range
-    (1..self.range).to_a
   end
 
   # ahhhhhh!  DRY DRY DRY

@@ -29,7 +29,7 @@ Feature: Creating surveys
 
   Scenario: Deleting a survey
     Given there is a survey named "Clinic Quality"
-    And the survey has a question named "Process to get an appointment"
+    And the survey has a question named "Process to get an appointment" of type "Multiple Choice"
     And I am on the survey page for "Clinic Quality"
     And I follow "Delete Survey"
     Then the survey "Clinic Quality" should be deleted

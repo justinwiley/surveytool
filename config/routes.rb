@@ -11,7 +11,6 @@ Surveytool::Application.routes.draw do
   match 'current_survey/display_question' => 'current_surveys#display_question', :as => 'display_question',
    :method => :post
   
-  
   resources :surveys do
     resources :questions do
       resources :answers
