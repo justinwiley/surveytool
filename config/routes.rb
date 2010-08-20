@@ -1,18 +1,27 @@
 Surveytool::Application.routes.draw do
   root :to => "surveys#index"
   
-  # recreate as sub resources?
-  match 'survey/:id/remove_spoken' => 'surveys#remove_spoken', :as => :remove_spoken, :method => :delete
-  match 'survey/:survey_id/question/:id/remove_spoken' => 'questions#remove_spoken', :as => :remove_question_spoken, :method => :delete
-  match 'survey/:survey_id/question/:question_id/answer/:id/remove_spoken' => 'answers#remove_spoken', :as => :remove_answer_spoken, :method => :delete
+  scope 'survey/', :method => :delete do
+    match ':id/remove_spoken' => 'surveys#remove_spoken', :as => :remove_spoken
+    match ':survey_id/question/:id/remove_spoken' => 'questions#remove_spoken', :as => :remove_question_spoken
+    match ':survey_id/question/:question_id/answer/:id/remove_spoken' => 'answers#remove_spoken', :as => :remove_answer_spoken
+  end
   
-  scope '/current_survey' do
-    match '/:survey_id/show' => 'current_surveys#show', :as => 'show_current_survey', :method => :get
-    match '/:survey_id/start' => 'current_surveys#start', :as => 'start_current_survey', :method => :post
-    match '/display_question' => 'current_surveys#display_question', :as => 'display_question',
-     :method => :post
-    match '/:survey_id/finish' => 'current_surveys#finish', :as => 'finish',
-      :method => :get
+  controller :current_survey do
+    scope :method => :get do
+      match '/:survey_id/show' => 'current_surveys#show', :as => 'show_current_survey'
+      match '/:survey_id/finish' => 'current_surveys#finish', :as => 'finish'
+    end
+    scope :method => :post do
+      match '/:survey_id/start' => 'current_surveys#start', :as => 'start_current_survey'
+      match '/display_question' => 'current_surveys#display_question', :as => 'display_question'
+    end
+  end
+  
+  controller :reports do
+    scope :method => :get do
+      match '/survey/:survey_id' => 'reports#survey', :as => 'show_survey_report'
+    end
   end
   
   resources :surveys do
