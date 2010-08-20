@@ -8,6 +8,7 @@ require 'rubygems'
 require 'uri'
 require 'cgi'
 require 'term/ansicolor'
+require 'pp'
 class String
   include Term::ANSIColor
 end

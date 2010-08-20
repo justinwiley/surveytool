@@ -1,3 +1,5 @@
+require 'lib/sample_response_data.rb'
+
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -7,21 +9,23 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 puts "Delete existing database? (y followed by Ctrl+D to delete, anything followed by ctrl+d to skip)"
-if STDIN.read =~ /y/
-  puts "Deleting"
-  Survey.delete_all
-  Question.delete_all
-  Answer.delete_all
-  Respondent.delete_all
-  Response.delete_all
-else
-  puts "Exiting"
-  exit
-end
+#if STDIN.read =~ /y/
+#  puts "Deleting"
+#  Survey.delete_all
+#  Question.delete_all
+#  Answer.delete_all
+#  Respondent.delete_all
+#  Response.delete_all
+#else
+#  puts "Exiting"
+#  exit
+#end
 
-puts "Populating #{RAILS_ENV} database"
+puts "Populating database with sample survey, questions, answers"
 
-survey = Survey.create! :name => 'Satisfaction and Need Assessment', :spoken => File.new('public/sample_audio_wave.wav'),
+survey_name = 'Satisfaction and Needs Assessment'
+
+survey = Survey.create! :name => survey_name, :spoken => File.new('public/sample_audio_wave.wav'),
   :desc => 'This is an example survey that showcases some of the features available in the Survey Tool application.'
 
 survey.questions.create! :name => 'Please rate the process to get an appointment on a scale of 1 to 5, with 1 being the lowest and 5 being the highest.',
@@ -54,4 +58,8 @@ question.answers.create! :name => 'E', :text => 'Neither Satisfied or Disatisfie
 question.answers.create! :name => 'F', :text => 'Somewhat Dissatisfied.'
 question.answers.create! :name => 'G', :text => 'Very Dissatisfied.'
 
+SampleResponseData.generate(survey_name,Date.today - 30,Date.today,true,true)
+
+
+puts "#{Respondent.count} total respondents, #{Response.count} total responses created"
 puts "Finished"

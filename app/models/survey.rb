@@ -22,4 +22,8 @@ class Survey < ActiveRecord::Base
       q if q.multiple_choice? && q.answers.empty?
     end.compact
   end
+  
+  def to_s
+    name
+  end
 end

@@ -21,4 +21,6 @@ Surveytool::Application.configure do
   config.active_support.deprecation = :log
   
   config.gem "rails-footnotes"
+
+  require 'pp'
 end

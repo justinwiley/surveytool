@@ -1,0 +1,27 @@
+-title "Report for #{@survey.name}"
+
+%p
+  ="Total Questions: #{@survey.questions.count}"
+%p
+  ="Total Respondents: #{@survey.respondents.count}"
+%p
+  ="Last Response: #{@survey.updated_at}"
+%p
+  #timechart
+  :javascript
+    $(function () {  
+      new Highcharts.Chart({  
+        chart: { renderTo: 'timechart' },
+        title: { text: 'Respondents per Day' },
+        xAxis: { type: 'datetime' },
+        yAxis: {
+          title: { text: 'Number of Respondents' }
+        },
+        series: [{
+          pointInterval: #{1.day * 1000},
+          pointStart: #{3.weeks.ago.at_midnight.to_i * 1000 },
+          data: [1, 2, 5, 7, 3]
+        }]
+      });  
+    });
+

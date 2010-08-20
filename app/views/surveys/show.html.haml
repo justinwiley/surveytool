@@ -76,4 +76,9 @@
     %i
       Add answers to all questions to administer this survey
   -else
-    =link_to("Administer this Survey", show_current_survey_path(@survey))
+    =link_to "Administer this Survey", show_current_survey_path(@survey)
+  -unless @survey.respondents.empty?
+    |
+    =link_to "View Reports", show_survey_report_path(@survey)
+    
+    

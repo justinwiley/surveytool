@@ -45,12 +45,10 @@ group :test do
 end
 
 group :development do
-#  gem 'pretty_print'
   gem "rails-footnotes"
 end
 
 group :cucumber do
-#  gem 'pretty_print'
   gem 'cucumber-rails'
   gem 'capybara'
   gem "rspec"

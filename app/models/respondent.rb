@@ -3,4 +3,8 @@ class Respondent < ActiveRecord::Base
 
   belongs_to :survey
   has_many :responses, :dependent => :destroy
+  
+  def to_s
+    "#{id}"
+  end
 end

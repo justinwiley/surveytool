@@ -9,6 +9,10 @@ class Answer < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :text
   
+  def to_s
+    self.name
+  end
+  
   def remove_spoken!
     self.spoken.clear
     self.save!
