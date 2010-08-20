@@ -13,6 +13,13 @@ a {
   height: 0;
   overflow: hidden; }
 
+.bigtext {
+  font-size: 240%; }
+
+.largeradio {
+  height: 1.5em;
+  width: 1.5em; }
+
 #container {
   width: 75%;
   margin: 0 auto;

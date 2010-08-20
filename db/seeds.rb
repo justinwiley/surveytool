@@ -24,14 +24,14 @@ puts "Populating #{RAILS_ENV} database"
 survey = Survey.create! :name => 'Satisfaction and Need Assessment', :spoken => File.new('public/sample_audio_wave.wav'),
   :desc => 'This is an example survey that showcases some of the features available in the Survey Tool application.'
 
-survey.questions.create! :name => 'Please rate the process to get an appointment on a scale of 1 to 5, with 1 being the lowest and 5 being the highest', 
+survey.questions.create! :name => 'Please rate the process to get an appointment on a scale of 1 to 5, with 1 being the lowest and 5 being the highest.',
   :answer_type => 'range', :range => 5, :spoken => File.new('public/testing.wav')
 
 question = survey.questions.create! :name => 'What are the main reasons you have attended this clinic rather than other health care providers?',
   :answer_type => 'multiple_choice', :spoken => File.new('public/testing.wav')
-question.answers.create! :name => 'A', :text => 'More convient location'
-question.answers.create! :name => 'B', :text => 'Better quality than other service providers'
-question.answers.create! :name => 'C', :text => 'Cost of Survices'
+question.answers.create! :name => 'A', :text => 'More convient location.'
+question.answers.create! :name => 'B', :text => 'Better quality than other service providers.'
+question.answers.create! :name => 'C', :text => 'Cost of Survices.'
 
 question = survey.questions.create! :name => "Has there been a time in the last year where you needed help but have been unable to come to the clinic?", 
   :answer_type => 'multiple_choice', :spoken => File.new('public/testing.wav')
@@ -40,18 +40,18 @@ question.answers.create! :name => 'B', :text => 'No'
 
 question = survey.questions.create! :name => "If yes, what is the reason why you didn't come to the clinic?", 
   :answer_type => 'multiple_choice', :spoken => File.new('public/testing.wav')
-question.answers.create! :name => 'A', :text => 'I did not know about the clinic'
-question.answers.create! :name => 'B', :text => 'The wait took too long at the clinic'
-question.answers.create! :name => 'C', :text => 'I had to work'
-question.answers.create! :name => 'D', :text => 'Other'
+question.answers.create! :name => 'A', :text => 'I did not know about the clinic.'
+question.answers.create! :name => 'B', :text => 'The wait took too long at the clinic.'
+question.answers.create! :name => 'C', :text => 'I had to work.'
+question.answers.create! :name => 'D', :text => 'Other.'
 
 question = survey.questions.create! :name => "How satisfied were you with your most recent experience in the clinic?", 
   :answer_type => 'multiple_choice', :spoken => File.new('public/testing.wav')
-question.answers.create! :name => 'A', :text => 'Very Satisfied'
-question.answers.create! :name => 'B', :text => 'Somewhat Satisfied'
-question.answers.create! :name => 'C', :text => 'Satisfied'
-question.answers.create! :name => 'E', :text => 'Neither Satisfied or Disatisfied'
-question.answers.create! :name => 'F', :text => 'Somewhat Dissatisfied'
-question.answers.create! :name => 'G', :text => 'Very Dissatisfied'
+question.answers.create! :name => 'A', :text => 'Very Satisfied.'
+question.answers.create! :name => 'B', :text => 'Somewhat Satisfied.'
+question.answers.create! :name => 'C', :text => 'Satisfied.'
+question.answers.create! :name => 'E', :text => 'Neither Satisfied or Disatisfied.'
+question.answers.create! :name => 'F', :text => 'Somewhat Dissatisfied.'
+question.answers.create! :name => 'G', :text => 'Very Dissatisfied.'
 
 puts "Finished"

@@ -29,7 +29,7 @@ gem 'launchy'
 gem 'haml'
 gem 'rails3-generators'
 gem "nifty-generators"
-
+gem 'flutie'
 #gem 'compass'
 
 # Bundle gems for the local environment. Make sure to

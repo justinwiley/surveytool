@@ -1,23 +1,38 @@
-="Question #{@display_question.position} of #{@survey.questions.count}"
-=@display_question.name
+-title "Question #{@display_question.position} of #{@survey.questions.count}"
 
-.answers
-  = form_tag display_question_url, :survey => @survey do
-    =hidden_field_tag 'survey_id', @survey.id
-    =hidden_field_tag 'question_id', @display_question.id
-    -if @display_question.multiple_choice?
-      -for answer in @display_question.answers
-        =answer.name
-        =answer.text
-        = radio_button_tag :answer, answer.id
-        %br
-    -else
-      -for answer_num in (1..@display_question.range.to_i)
-        = label_tag "range_#{answer_num}"
-        = radio_button_tag :range, answer_num
-    %br
-    =submit_tag "Previous Question" if @previous_question
-    =submit_tag @display_question.last? ? "Finish" : "Next Question"
-    %br
-    =link_to "Start Over", start_current_survey_path(@survey)
-    =link_to "Home", survey_path(@survey)
+%p.bigtext
+  =@display_question.name
+
+%p
+  .answers
+    = form_tag display_question_url, :survey => @survey do
+      =hidden_field_tag 'survey_id', @survey.id
+      =hidden_field_tag 'question_id', @display_question.id
+      %table.bigtext
+        -if @display_question.multiple_choice?
+          -for answer in @display_question.answers
+            %tr
+              %td
+                =answer.name
+              %td
+                =answer.text
+              %td
+                =radio_button_tag :answer, answer.id, {}, {:class => 'largeradio'}
+            %br
+        -else
+          -display_range = (1..@display_question.range.to_i)
+          %tr
+            -for answer_num in display_range
+              %td.bigtext
+                = "#{answer_num}"
+          %tr
+            -for answer_num in display_range
+              %td
+                = radio_button_tag :range, answer_num, {}, {:class => 'largeradio'}
+      %p
+        =submit_tag "Previous Question" if @previous_question
+        =submit_tag @display_question.last? ? "Finish" : "Next Question"
+      %p
+        =link_to "Start Over", start_current_survey_path(@survey)
+        |
+        =link_to "Home", survey_path(@survey)

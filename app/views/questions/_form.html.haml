@@ -8,16 +8,16 @@
   = f.error_messages
   %p
     = f.label :name
-    %br
-    = f.text_field :name
+    = f.text_field :name, :cols => 30, :size => 900
+  %br
   %p
     = f.label :spoken
     -if @question.spoken_file_name
+      %i= "(Currently set to #{@question.spoken_file_name})"
+      = link_to "Remove", remove_question_spoken_path(@survey,@question), :confirm => "Are you sure you want to remove this audio file?"
       %br
-      %i= @question.spoken_file_name
-      %td= link_to "Remove Spoken Version", remove_question_spoken_path(@survey,@question), :confirm => "Are you sure you want to remove this audio file?"
-    %br
     = f.file_field :spoken
+
   %p
     = f.label :question_type
     %br

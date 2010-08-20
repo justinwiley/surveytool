@@ -59,6 +59,7 @@ Feature: Manage Current Surveys
     And there should be a saved response for "What are the main reasons you have attended the SHC" answer "Location"
   
   Scenario: Failing to select an answer
+    Then pending
     Given I follow "Administer this Survey"
     And I follow "Start Survey"
     And I press "Next Question"

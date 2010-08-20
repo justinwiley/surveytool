@@ -54,6 +54,7 @@ GEM
       abstract (>= 1.0.0)
     ffi (0.6.3)
       rake (>= 0.8.7)
+    flutie (1.0.3)
     gherkin (2.1.5)
       trollop (~> 1.16.2)
     haml (3.0.15)
@@ -129,6 +130,7 @@ DEPENDENCIES
   acts_as_list
   capybara
   cucumber-rails
+  flutie
   haml
   launchy
   mysql
