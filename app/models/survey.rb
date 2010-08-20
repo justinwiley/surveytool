@@ -12,4 +12,14 @@ class Survey < ActiveRecord::Base
     self.spoken.clear
     self.save!
   end
+
+  def orphaned_questions?
+    !orphaned_questions.empty?
+  end
+
+  def orphaned_questions
+    questions.map do |q|
+      q if q.multiple_choice? && q.answers.empty?
+    end.compact
+  end
 end

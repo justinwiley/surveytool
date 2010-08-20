@@ -50,7 +50,9 @@
       - @survey.questions.each_with_index do |question,i|
         %tr
           %td= (i + 1).to_s + "."
-          %td= link_to question.name, edit_survey_question_path(@survey,question)
+          %td
+            = link_to question.name, edit_survey_question_path(@survey,question)
+            ="No answers associated with this question!" if question.multiple_choice? && question.answers.empty?
           %td
             -if question.spoken_file_name.blank?
               %i No Spoken Version Found
@@ -70,4 +72,8 @@
   |
   = link_to "View All Surveys", surveys_path
   |
-  = link_to "Administer this Survey", show_current_survey_path(@survey)
+  -if @survey.orphaned_questions?
+    %i
+      Add answers to all questions to administer this survey
+  -else
+    =link_to("Administer this Survey", show_current_survey_path(@survey))

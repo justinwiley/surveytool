@@ -20,3 +20,4 @@
     =submit_tag @display_question.last? ? "Finish" : "Next Question"
     %br
     =link_to "Start Over", start_current_survey_path(@survey)
+    =link_to "Home", survey_path(@survey)

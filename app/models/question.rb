@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
   has_many :answers, :order => 'position', :dependent => :destroy
   has_many :responses
   
-  acts_as_list :column => 'position'
+  acts_as_list
 
   has_attached_file :spoken
   

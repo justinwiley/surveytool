@@ -66,8 +66,9 @@ Feature: Manage Current Surveys
     And I should see "Question 1 of 2"
     
   Scenario: Warning the administrator if no answers for a multiple choice question
-    Then pending
-    Given the survey has a question named "Faulty Question" of type "Multiple Choice"
-    And the survey has a question named "Faulty Question 2" of type "Multiple Choice"
-    Then I should see "Faulty Question has no answers assigned to it"
-    And I should see "Faulty Question 2 has no answers assigned to it"
+    Given there is a survey named "Faulty Survey"
+    And the survey has a question named "Faulty Question" of type "Multiple Choice"
+    And I am on the survey page for "Faulty Survey"
+    Then I should see "No answers associated with this question"
+    And I should see "Add answers to all questions to administer this survey"
+    And I should not see "Administer this Survey"
