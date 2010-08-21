@@ -1,4 +1,4 @@
--title "Report for #{@survey.name}"
+-title "Report for #{@survey.name} survey"
 
 %p
   ="Total Questions: #{@survey.questions.count}"
@@ -18,10 +18,15 @@
           title: { text: 'Number of Respondents' }
         },
         series: [{
+          name: 'Number of Respondents',
           pointInterval: #{1.day * 1000},
           pointStart: #{3.weeks.ago.at_midnight.to_i * 1000 },
-          data: [1, 2, 5, 7, 3]
+          data: #{(3.weeks.ago.to_date..Date.today).map { |date| @survey.total_respondents_on(date).to_f}.inspect}
         }]
       });  
     });
-
+%p
+  Questions: 
+  =form_tag '/reports/question', :method => :post do
+    = select_tag 'question_id', options_for_select(@survey.questions.collect{|q| [truncate(q.name,:lenth => 40),q.id]})
+    = submit_tag 'Submit'

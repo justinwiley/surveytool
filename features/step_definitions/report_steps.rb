@@ -12,11 +12,12 @@ When /^I delete the (\d+)(?:st|nd|rd|th) report$/ do |pos|
 end
 
 Given /^"([^"]*)" has sample respondent data$/ do |survey_name|
-  SampleResponseData.generate(survey_name,Date.today - 2,Date.today,false,false)
-  Respondent.count.should == 9
-  Response.count.should == 18
+  SampleResponseData.generate(survey_name,Date.parse('2010-01-01'),Date.parse('2010-01-03'),false,false)
+  Respondent.count.should == 3
+  Response.count.should == 6
 end
 
-Then /^I should see a timeseries graph of survey "([^"]*)"$/ do |arg1|
-  page.has_content?('series: [{')
+Then /^I should see a timeseries graph of survey "([^"]*)"(?: for "([^"]*)")?$/ do |survey_name,range|
+  page.has_content?('series: [{').should be_true
+  page.has_content?("name: 'Number of Respondents',").should be_true
 end

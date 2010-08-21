@@ -1,6 +1,6 @@
 class SampleResponseData
   def self.answer_survey(survey,respondent,date,verbose=false)
-    puts "  Answering survey for respondent #{respondent.id}" if verbose
+    puts "  Answering survey for respondent #{respondent.id} (#{respondent.survey.id})" if verbose
     survey.questions.each do |question|
       answers = question.answers
       if question.multiple_choice?
@@ -11,20 +11,25 @@ class SampleResponseData
         type = :range
       end
       puts "   - selected #{answer} for question '#{question.name}'" if verbose
-      respondent.responses.create! :question => question, type => answer, :created_at => date, :updated_at => date
+      response = respondent.responses.create :question => question, type => answer
+      response.update_attribute(:created_at,date)
     end
   end
 
   def self.generate(survey_name,start_date,end_date,verbose=false,random_respondents=false)
+    ActiveRecord::Base.record_timestamps = false
     survey = Survey.find_by_name survey_name
-    puts "Creating sample response data for #{survey.name}" if verbose
+    puts "Creating sample response data for #{survey.name} (#{survey.id})" if verbose
     (start_date..end_date).each do |date|
       next if date.cwday > 5  # skip weekends
       puts date if verbose
       limit = random_respondents ? (rand(3).to_i + 2) : 3
       (1..limit).each do
-        SampleResponseData.answer_survey survey, survey.respondents.create!(:created_at => date), date, verbose
+        respondent = survey.respondents.create!
+        respondent.update_attribute(:created_at, date)
+        SampleResponseData.answer_survey survey, respondent, date, verbose
       end
     end
+    ActiveRecord::Base.record_timestamps = false
   end
 end

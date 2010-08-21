@@ -1,7 +1,7 @@
 Feature: Manage reports
   In order to evaluate survey data
   A survey creator
-  Wants to view cha
+  Wants to view analytics
   
   Background:
     Given there is a survey named "Clinic Quality"
@@ -18,6 +18,13 @@ Feature: Manage reports
     When I follow "View Reports"
     Then I should see "Report for Clinic Quality"
     And I should see "Total Questions: 2"
-    And I should see "Total Respondents: 9"
+    And I should see "Total Respondents: 3"
     And I should see "Last Response: "
     And I should see a timeseries graph of survey "Clinic Quality"
+
+  Scenario: Viewing questions
+    When I follow "View Reports"
+    And I select "Process to get an appointment" from "question_id"
+    And I press "Submit"
+    Then I should see "Process to get an appointment"
+    And I should see a barchart graph for "Process to get an appointment"
