@@ -1,0 +1,47 @@
+-title "Question Report"
+%p{:style => 'font-size:140%'}
+  ="\"#{@question.name}\""
+%p
+  -if @question.range?
+    ="Range question, 1 to #{@question.range}"
+  -else
+    -for answer in @question.answers
+      ="#{answer.name}. #{answer.text}"
+%p
+  -total_answers = @question.responses.count
+  #piechart
+  :javascript
+    $(function () {  
+      new Highcharts.Chart({  
+        chart: { renderTo: 'timechart' },
+        title: { text: 'Most Popular Responses' },
+        tooltip: {
+           formatter: function() {
+              return '<b>'+ this.point.name +'</b>('+ this.y +' out of #{total_answers})  ';
+           }
+        },
+        plotOptions: {
+           pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                 enabled: true,
+                 formatter: function() {
+                    return "Answer " + (this.point.x + 1);
+                 },
+                 color: 'white',
+                 style: {
+                    font: '13px Trebuchet MS, Verdana, sans-serif'
+                 }
+              }
+           }
+        },
+        series: [{
+          type: 'pie',
+          name: 'Respondents',
+          data: #{@question.responses_by_answer.inspect}
+        }]
+      });  
+    });
+%p
+  =link_to 'Back to Survey Report', show_survey_report_path(@question.survey)

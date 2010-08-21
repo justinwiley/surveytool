@@ -22,10 +22,19 @@ class Question < ActiveRecord::Base
     answer_type == 'range'
   end
 
+  def responses_by_answer_percentage
+    if range?
+      total_responses = responses.count
+      responses_by_answer.map{|k,v| ["%2.2f%%" % ((v.to_f / total_responses.to_f) * 100),v]}
+    else
+#      responses.group('responses.range').count
+    end
+  end
+
   def responses_by_answer
     if range?
       total_responses = responses.count
-      responses.group('responses.range').count.map{|k,v| ["%2.2f%%" % ((v.to_f / total_responses.to_f) * 100),v]}
+      responses.group('responses.range').count
     else
 #      responses.group('responses.range').count
     end
