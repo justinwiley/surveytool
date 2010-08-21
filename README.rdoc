@@ -32,7 +32,7 @@ Please note that this software is an alpha prototype, some planned functionality
 == Screenshots
 
 *Creating and Editing New Surveys*
-!http://github.com/justinwiley/surveytool/raw/master/public/sample_images/survey_edit.png
+http://github.com/justinwiley/surveytool/raw/master/public/sample_images/survey_edit.png!
 
 *Administering the Survey to a Patient*
 !http://github.com/justinwiley/surveytool/raw/master/public/sample_images/administering_the_survey.png!
