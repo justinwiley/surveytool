@@ -31,4 +31,4 @@ Please note that this software is an alpha prototype, some functionality may not
 
 Copyright Justin Tyler Wiley, 2010
 Licensed under the GNU General Public License Version 3
-link:http://www.gnu.org/licenses/gpl-3.0.html
+http://www.gnu.org/licenses/gpl-3.0.html
