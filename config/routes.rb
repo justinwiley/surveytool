@@ -22,6 +22,7 @@ Surveytool::Application.routes.draw do
     scope :method => :get do
       match '/reports/survey/:survey_id' => 'reports#survey', :as => 'show_survey_report'
       match '/reports/question/' => 'reports#question', :as => 'show_question_report'
+      match '/reports/export/:survey_id' => 'reports#export_csv', :as => 'export_response_data'
     end
   end
   

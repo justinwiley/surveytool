@@ -1,3 +1,4 @@
+
 class Survey < ActiveRecord::Base
   attr_accessible :name, :spoken, :desc, :questions, :remove_spoken, :created_at
   
@@ -8,6 +9,28 @@ class Survey < ActiveRecord::Base
   has_many :responses, :through => :respondents
 
   validates_presence_of :name
+  
+  def export_csv
+    csv_data = FasterCSV.generate { |csv|
+      csv << [
+      "Question Name",
+      "Question ID",
+      "Answer",
+      "Date",
+      ]
+      questions.each { |question|
+        question.responses.each { |response|
+          answer = question.range? ? response.range : response.answer.name
+          csv << [
+            question.name,
+            question.id,
+            answer,
+            question.created_at
+          ]
+        }
+      }
+    }
+  end
   
   def remove_spoken!
     self.spoken.clear

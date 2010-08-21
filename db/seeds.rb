@@ -35,7 +35,7 @@ question = survey.questions.create! :name => 'What are the main reasons you have
   :answer_type => 'multiple_choice', :spoken => File.new('public/testing.wav')
 question.answers.create! :name => 'A', :text => 'More convient location.'
 question.answers.create! :name => 'B', :text => 'Better quality than other service providers.'
-question.answers.create! :name => 'C', :text => 'Cost of Survices.'
+question.answers.create! :name => 'C', :text => 'Cost of Services.'
 
 question = survey.questions.create! :name => "Has there been a time in the last year where you needed help but have been unable to come to the clinic?", 
   :answer_type => 'multiple_choice', :spoken => File.new('public/testing.wav')

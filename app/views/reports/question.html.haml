@@ -27,7 +27,7 @@
             -rescnt = answer.responses.count
             ="#{rescnt} (#{"%2.2f" % (rescnt.to_f / total_responses.to_f)}%)"
 %p
-  #linechart
+  #splinechart
 %hr
 %p
   %table
@@ -131,26 +131,26 @@
       });
     }
 
-    function create_linechart() {
+    function create_splinechart() {
        new Highcharts.Chart({
+          chart: {
+            renderTo: 'splinechart',
+            defaultSeriesType: 'spline'
+          },
           legend: { 
             y: 5
           },
-          chart: {
-             renderTo: 'linechart',
-             defaultSeriesType: 'line'
-          },
           title: {
-             text: '#{@question.name}'
+             text: 'Selected Responses Over Time'
           },
           subtitle: {
-             text: '#{@question.responses.count} total responses in date range'
+             text: '#{@question.responses.count} total responses,  #{start_date.to_s} to #{end_date}'
           },
           xAxis: {
             labels: {
               rotation: -90
             },
-            categories: #{@question.line_categories(start_date,end_date)}
+            categories: #{@question.spline_categories(start_date,end_date)}
           },
           yAxis: {
              title: {
@@ -164,22 +164,14 @@
                    this.x +': '+ this.y;
              }
           },
-          plotOptions: {
-             line: {
-                dataLabels: {
-                   enabled: true
-                },
-                enableMouseTracking: false
-             }
-          },
-          series: #{@question.line_series(start_date,end_date)}
+          series: #{@question.spline_series(start_date,end_date)}
        });
     }
     
     $(document).ready(function() {
       create_barchart();
       create_piechart();
-      create_linechart();
+      create_splinechart();
     });
 %p
   Select specific Question:

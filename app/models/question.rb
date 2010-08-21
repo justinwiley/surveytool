@@ -31,11 +31,11 @@ class Question < ActiveRecord::Base
     responses_by_answer_percentage.inspect
   end
 
-  def line_categories(start_date,end_date)
+  def spline_categories(start_date,end_date)
     (start_date..end_date).to_json
   end
 
-  def line_series(start_date,end_date)
+  def spline_series(start_date,end_date)
     answers = {}
     (start_date..end_date).each do |date|
       total_responses_on(date).each do |k,v|

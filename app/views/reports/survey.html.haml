@@ -7,6 +7,8 @@
 %p
   ="Last Response: #{@survey.updated_at}"
 %p
+  = link_to "Export Response Data", export_response_data_path(@survey)
+%p
   #timechart
   :javascript
     $(function () {  
@@ -32,3 +34,4 @@
     = submit_tag 'Submit'
 %p
   =link_to "Back to Survey", survey_path(@survey)
+

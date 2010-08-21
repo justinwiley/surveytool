@@ -18,10 +18,12 @@ Clinicians can then apply what they learn from the analysis of the software to i
 
 == This is Alpha Software
 
-Please note that this software is an alpha prototype, some functionality may not be functional.  See technical notes below for details.
+Please note that this software is an alpha prototype, some planned functionality is not yet fully implemented, and the software has not been deployed to a production environment.  See technical notes below for details.
 
 == Technical Notes
 
+* Sample data for the application can be populated by running 'rake db:seed'
+* Rails 3 RC or above required
 * An HTML5 compatible browser is required to use audio tags
 * While core functionality is tested via Cucumber and targeted Rspec code, some features like Highchart graphs are not properly tested
 * User authentication for survey management is not currently implemented
