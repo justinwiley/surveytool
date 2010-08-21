@@ -1,4 +1,4 @@
--title "Report for #{@survey.name} survey"
+-title "Report - #{@survey}"
 
 %p
   ="Total Questions: #{@survey.questions.count}"
@@ -7,26 +7,31 @@
 %p
   ="Last Response: #{@survey.updated_at}"
 %p
+  -point_interval = 1.day * 1000
+  -point_start = 3.weeks.ago.at_midnight.to_i * 1000
+  -chartdata = (3.weeks.ago.to_date..Date.today).map { |date| @survey.total_respondents_on(date).to_f}.inspect
   #timechart
   :javascript
     $(function () {  
       new Highcharts.Chart({  
         chart: { renderTo: 'timechart' },
-        title: { text: 'Respondents per Day' },
+        title: { text: 'Respondents Per Day' },
         xAxis: { type: 'datetime' },
         yAxis: {
           title: { text: 'Number of Respondents' }
         },
         series: [{
           name: 'Number of Respondents',
-          pointInterval: #{1.day * 1000},
-          pointStart: #{3.weeks.ago.at_midnight.to_i * 1000 },
-          data: #{(3.weeks.ago.to_date..Date.today).map { |date| @survey.total_respondents_on(date).to_f}.inspect}
+          pointInterval: #{point_interval},
+          pointStart: #{point_start},
+          data: #{chartdata}
         }]
       });  
     });
 %p
   Questions: 
-  =form_tag '/reports/question', :method => :post do
+  =form_tag '/reports/question', :method => :get do
     = select_tag 'question_id', options_for_select(@survey.questions.collect{|q| [truncate(q.name,:lenth => 40),q.id]})
     = submit_tag 'Submit'
+%p
+  =link_to "Back to Survey", survey_path(@survey)

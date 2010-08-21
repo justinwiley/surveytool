@@ -21,8 +21,8 @@ Surveytool::Application.routes.draw do
   controller :reports do
     scope :method => :get do
       match '/reports/survey/:survey_id' => 'reports#survey', :as => 'show_survey_report'
+      match '/reports/question/' => 'reports#question', :as => 'show_question_report'
     end
-    match '/reports/question' => 'reports#question', :method => 'post'
   end
   
   resources :surveys do

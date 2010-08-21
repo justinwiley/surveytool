@@ -8,12 +8,82 @@
     -for answer in @question.answers
       ="#{answer.name}. #{answer.text}"
 %p
+  -bardata = @question.bardata
   -total_answers = @question.responses.count
-  #piechart
+  -categories = @question.chart_categories
+  -piedata = @question.piedata
+%p
+  %table
+    %tr
+      %td
+        #piechart{:style => 'width: 400px; height: 500px;'}
+      %td
+        #barchart{:style => 'width: 600px; height: 500px;'}
+  
   :javascript
-    $(function () {  
+    function create_barchart() {
+      new Highcharts.Chart({
+         chart: {
+            renderTo: 'barchart',
+            defaultSeriesType: 'column',
+            margin: [ 50, 50, 100, 80]
+         },
+         title: {
+            text: 'Respondents by Answer'
+         },
+         xAxis: {
+            categories: #{categories},
+            labels: {
+               rotation: -45,
+               align: 'right',
+               style: {
+                   font: 'normal 13px Verdana, sans-serif'
+               }
+            }
+         },
+         yAxis: {
+            min: 0,
+            title: {
+               text: 'Respondents'
+            }
+         },
+         legend: {
+            enabled: false
+         },
+         tooltip: {
+            formatter: function() {
+               return '<b>'+ this.x +'</b><br/>'+
+                   Highcharts.numberFormat(this.y, 1);
+            }
+         },
+         plotOptions: {
+           column: {
+           }
+         },
+         series: [{
+            name: 'Respondents',
+            data: #{bardata},
+            dataLabels: {
+               enabled: true,
+               rotation: -90,
+               color: '#FFFFFF',
+               align: 'right',
+               x: -3,
+               y: 10,
+               formatter: function() {
+                  return this.y + " respondents";
+               },
+               style: {
+                  font: 'normal 13px Verdana, sans-serif'
+               }
+            }         
+         }]
+      });    
+    }
+    
+    function create_piechart() {
       new Highcharts.Chart({  
-        chart: { renderTo: 'timechart' },
+        chart: { renderTo: 'piechart' },
         title: { text: 'Most Popular Responses' },
         tooltip: {
            formatter: function() {
@@ -39,9 +109,16 @@
         series: [{
           type: 'pie',
           name: 'Respondents',
-          data: #{@question.responses_by_answer.inspect}
+          data: #{piedata}
         }]
-      });  
+      });
+    }
+    
+    $(document).ready(function() {
+      create_barchart();
+      create_piechart();
     });
+
+
 %p
   =link_to 'Back to Survey Report', show_survey_report_path(@question.survey)

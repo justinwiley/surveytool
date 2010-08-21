@@ -22,26 +22,40 @@ class Question < ActiveRecord::Base
     answer_type == 'range'
   end
 
+  def chart_categories
+    categories = range? ? (1..range).map{|r| "Answer #{r}"} : answers.map{|r| r.name}
+    categories.inspect
+  end
+  
+  def bardata
+    data = range? ? responses_by_answer.map{|q| q.second} : responses_by_answer.to_a
+    data.inspect
+  end
+
+  def piedata
+    responses_by_answer_percentage.inspect
+  end
+  
   def responses_by_answer_percentage
+    total_responses = responses.count
     if range?
-      total_responses = responses.count
       responses_by_answer.map{|k,v| ["%2.2f%%" % ((v.to_f / total_responses.to_f) * 100),v]}
     else
-#      responses.group('responses.range').count
+      answers.map do |a|
+        answer_responses = a.responses.count
+        ["%2.2f%%" % ((answer_responses.to_f / total_responses.to_f) * 100),answer_responses]
+      end
     end
   end
 
   def responses_by_answer
     if range?
-      total_responses = responses.count
       responses.group('responses.range').count
     else
-#      responses.group('responses.range').count
+      answers.map{|a| a.responses.count}
     end
   end
 
-  # ahhhhhh!  DRY DRY DRY
-  
   def remove_spoken!
     self.spoken.clear
     self.save!

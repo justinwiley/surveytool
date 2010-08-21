@@ -16,7 +16,7 @@ Feature: Manage reports
     
   Scenario: Viewing a report
     When I follow "View Reports"
-    Then I should see "Report for Clinic Quality"
+    Then I should see "Report - Clinic Quality"
     And I should see "Total Questions: 2"
     And I should see "Total Respondents: 3"
     And I should see "Last Response: "

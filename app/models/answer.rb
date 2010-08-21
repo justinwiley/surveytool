@@ -2,6 +2,7 @@ class Answer < ActiveRecord::Base
   attr_accessible :name, :text, :spoken
 
   belongs_to :question
+  has_many :responses
   acts_as_list :scope => :question
   
   has_attached_file :spoken
