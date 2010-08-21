@@ -1,6 +1,6 @@
-= Clinical Survey Feedback Tool
+= Clinical Survey Tool
 
-The Clinical Survey Feedback Tool is a web-application designed to assist small clinics with data-gathering and analysis.  It is designed to provide clinicians with constant patient feedback be allowing them to create, collect, and analyze exit interviews for patients.
+The Clinical Survey Tool is a web-application designed to assist small clinics with data-gathering and analysis.  It is designed to provide clinicians with constant patient feedback be allowing them to create, collect, and analyze exit interviews for patients.
 
 == Why Collect Feedback from Patients?
 
@@ -18,7 +18,7 @@ Clinicians can then apply what they learn from the analysis of the software to i
 
 == This is Alpha Software
 
-Please note that this software is an alpha prototype, some planned functionality is not yet fully implemented, and the software has not been deployed to a production environment.  See technical notes below for details.
+Please note that this software is an alpha prototype, meaning some planned functionality is not yet fully implemented, and the software has not been used in a production environment.  See technical notes below for details.
 
 == Technical Notes
 
@@ -27,7 +27,7 @@ Please note that this software is an alpha prototype, some planned functionality
 * An HTML5 compatible browser is required to use audio tags
 * While core functionality is tested via Cucumber and targeted Rspec code, some features like Highchart graphs are not properly tested
 * User authentication for survey management is not currently implemented
-* Moving to beta or production will require significant re-architecting and DRYing/refactoring cycle (Heckle and Flog would be a good place to start)
+* Moving to beta or production will require significant re-architecting and a DRYing/refactoring cycle (Heckle and Flog would be a good place to start)
 
 == Screenshots
 
