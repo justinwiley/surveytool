@@ -29,6 +29,21 @@ Please note that this software is an alpha prototype, some planned functionality
 * User authentication for survey management is not currently implemented
 * Moving to beta or production will require significant re-architecting and DRYing/refactoring cycle (Heckle and Flog would be a good place to start)
 
+== Screenshots
+
+**Creating and Editing New Surveys**
+!http://github.com/justinwiley/surveytool/raw/master/public/sample_images/survey_edit.png!
+
+**Administering the Survey to a Patient**
+!http://github.com/justinwiley/surveytool/raw/master/public/sample_images/administering_the_survey.png!
+
+**Overview of Survey**
+!http://github.com/justinwiley/surveytool/raw/master/public/sample_images/survey_report.png!
+
+**Reports for Specific Questions**
+!http://github.com/justinwiley/surveytool/raw/master/public/sample_images/question_report2.png!
+!http://github.com/justinwiley/surveytool/raw/master/public/sample_images/question_report1.png!
+
 == License
 
 Copyright Justin Tyler Wiley, 2010
