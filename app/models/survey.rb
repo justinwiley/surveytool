@@ -27,7 +27,19 @@ class Survey < ActiveRecord::Base
   def to_s
     name
   end
+
+  def chartdata
+    (3.weeks.ago.to_date..Date.today).map { |date| total_respondents_on(date).to_f}.inspect
+  end
+
+  def point_interval
+    1.day * 1000
+  end
   
+  def point_start
+    3.weeks.ago.at_midnight.to_i * 1000
+  end
+    
   def average_response_time
     respondents = responses.select('respondents.created_at as start_time,max(responses.created_at) as end_time').group('respondents.id')
     return "No respondent data" unless respondents.count
@@ -37,7 +49,6 @@ class Survey < ActiveRecord::Base
     end
     Time.at(sum / respondents.count).to_s
   end
-
 
   def total_respondents_on(date)
     respondents.where("DATE_FORMAT(created_at,'%Y-%m-%d') = ?", date).count

@@ -22,11 +22,6 @@ class Question < ActiveRecord::Base
     answer_type == 'range'
   end
 
-  def chart_categories
-    categories = range? ? (1..range).map{|r| "Answer #{r}"} : answers.map{|r| r.name}
-    categories.inspect
-  end
-  
   def bardata
     data = range? ? responses_by_answer.map{|q| q.second} : responses_by_answer.to_a
     data.inspect
@@ -34,6 +29,38 @@ class Question < ActiveRecord::Base
 
   def piedata
     responses_by_answer_percentage.inspect
+  end
+
+  def line_categories(start_date,end_date)
+    (start_date..end_date).to_json
+  end
+
+  def line_series(start_date,end_date)
+    answers = {}
+    (start_date..end_date).each do |date|
+      total_responses_on(date).each do |k,v|
+        if multiple_choice?
+          ans = Answer.find(k)
+          k = "#{ans.name} - #{ans.text}"
+        end
+        answers[k] ||= []
+        answers[k] << v
+      end
+    end
+    answers.map{|k,v| {:name => k, :data => v}}.sort{|a,b| a[:name] <=> b[:name]}.to_json
+  end
+
+  def total_responses_on(date)
+    if range?
+      responses.where("DATE_FORMAT(created_at,'%Y-%m-%d') = ?", date).group('responses.range').count
+    else
+      responses.where("DATE_FORMAT(created_at,'%Y-%m-%d') = ?", date).group('responses.answer_id').count
+    end
+  end
+
+  def bar_categories
+    categories = range? ? (1..range).map{|r| "Answer #{r}"} : answers.map{|r| r.name}
+    categories.inspect
   end
   
   def responses_by_answer_percentage

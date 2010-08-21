@@ -1,17 +1,34 @@
 -title "Question Report"
+-start_date = Date.today - 30
+-end_date = Date.today
+-total_responses = @question.responses.count
 %p{:style => 'font-size:140%'}
   ="\"#{@question.name}\""
 %p
-  -if @question.range?
-    ="Range question, 1 to #{@question.range}"
-  -else
-    -for answer in @question.answers
-      ="#{answer.name}. #{answer.text}"
+  %table
+    %th
+      Answer
+    %th
+      Total Responses
+    -if @question.range?
+      -Question.first.responses.group('responses.range').count.each do |ansname,rescnt|
+        %tr
+          %td
+            =ansname
+          %td
+            ="#{rescnt} (#{"%2.2f" % (rescnt.to_f / total_responses.to_f)}%)"
+      ="Range question, 1 to #{@question.range}"
+    -else
+      -for answer in @question.answers
+        %tr
+          %td
+            ="#{answer.name}. #{answer.text}"
+          %td
+            -rescnt = answer.responses.count
+            ="#{rescnt} (#{"%2.2f" % (rescnt.to_f / total_responses.to_f)}%)"
 %p
-  -bardata = @question.bardata
-  -total_answers = @question.responses.count
-  -categories = @question.chart_categories
-  -piedata = @question.piedata
+  #linechart
+%hr
 %p
   %table
     %tr
@@ -32,7 +49,7 @@
             text: 'Respondents by Answer'
          },
          xAxis: {
-            categories: #{categories},
+            categories: #{@question.bar_categories},
             labels: {
                rotation: -45,
                align: 'right',
@@ -62,7 +79,7 @@
          },
          series: [{
             name: 'Respondents',
-            data: #{bardata},
+            data: #{@question.bardata},
             dataLabels: {
                enabled: true,
                rotation: -90,
@@ -87,7 +104,7 @@
         title: { text: 'Most Popular Responses' },
         tooltip: {
            formatter: function() {
-              return '<b>'+ this.point.name +'</b>('+ this.y +' out of #{total_answers})  ';
+              return '<b>'+ this.point.name +'</b>('+ this.y +' out of #{@question.responses.count})  ';
            }
         },
         plotOptions: {
@@ -109,16 +126,65 @@
         series: [{
           type: 'pie',
           name: 'Respondents',
-          data: #{piedata}
+          data: #{@question.piedata}
         }]
       });
+    }
+
+    function create_linechart() {
+       new Highcharts.Chart({
+          legend: { 
+            y: 5
+          },
+          chart: {
+             renderTo: 'linechart',
+             defaultSeriesType: 'line'
+          },
+          title: {
+             text: '#{@question.name}'
+          },
+          subtitle: {
+             text: '#{@question.responses.count} total responses in date range'
+          },
+          xAxis: {
+            labels: {
+              rotation: -90
+            },
+            categories: #{@question.line_categories(start_date,end_date)}
+          },
+          yAxis: {
+             title: {
+                text: 'Number of Responses'
+             }
+          },
+          tooltip: {
+             enabled: false,
+             formatter: function() {
+                return '<b>'+ this.series.name +'</b><br/>'+
+                   this.x +': '+ this.y;
+             }
+          },
+          plotOptions: {
+             line: {
+                dataLabels: {
+                   enabled: true
+                },
+                enableMouseTracking: false
+             }
+          },
+          series: #{@question.line_series(start_date,end_date)}
+       });
     }
     
     $(document).ready(function() {
       create_barchart();
       create_piechart();
+      create_linechart();
     });
-
-
+%p
+  Select specific Question:
+  =form_tag '/reports/question', :method => :get do
+    = select_tag 'question_id', options_for_select(@question.survey.questions.collect{|q| [truncate(q.name,:lenth => 40),q.id]})
+    = submit_tag 'Submit'
 %p
   =link_to 'Back to Survey Report', show_survey_report_path(@question.survey)
