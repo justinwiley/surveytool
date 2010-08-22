@@ -52,6 +52,6 @@ http://github.com/justinwiley/surveytool/raw/master/public/sample_images/questio
 
 == License
 
-Copyright Justin Tyler Wiley (http://wwww.justintylerwiley.com), 2010
+Copyright Justin Tyler Wiley (http://www.justintylerwiley.com), 2010
 
 Licensed under the GNU General Public License Version 3, see http://www.gnu.org/licenses/gpl-3.0.html for details
