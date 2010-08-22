@@ -2,7 +2,7 @@
 
 The Clinical Survey Tool is a web-application designed to assist small clinics with data-gathering and analysis.  It is designed to provide clinicians with constant patient feedback be allowing them to create, collect, and analyze exit interviews for patients.
 
-== Why Collect Feedback from Patients?
+== Why collect feedback?
 
 A typical visit to a clinic involves a number of interactions between the patient, clinicians and staff.  A patient has to schedule an appointment, find the office, arrive and wait to be seen.  During their visit with a clinician, they are asked to describe current symptoms, prior diagnoses, family history.  They are asked to take tests at the clinic, or schedule new appointments.
 
@@ -16,16 +16,22 @@ Using the Clinic Survey Tool, clinicians and/or staff can:
 
 Clinicians can then apply what they learn from the analysis of the software to improving patient experiences, and therefore patient outcomes.  Ideally this would be a long-running, continual process.
 
-== This is Alpha Software
+== Accessible Surveys
 
-Please note that this software is an alpha prototype, meaning some planned functionality is not yet fully implemented, and the software has not been used in a production environment.  See technical notes below for details.
+Ideally, the feedback survey would be administered after a patient receives treatment.  A clinician would provide them access to a private computer terminal (in another room, or after the clinician has left the room).  The patient navigates the survey, and their responses are collected and stored with other patients.  Respondents are completely anonymous, no names or personal information is requested or stored by the software.
+
+To make the surveys as accessible as possible for patients, question and answer text and navigation buttons are rendered large.  In addition, audio versions of each question and it's corresponding answers can be recorded and attached (please note this feature is still under development).
+
+== Important Note
+
+Please note that this software is an alpha prototype, meaning some planned functionality is not yet fully implemented, and the software has not been used in a production environment.  See technical notes below for details.  This software is as-is, no warranty expressed or implied.  See the license information below for details.
 
 == Technical Notes
 
 * Sample data for the application can be populated by running 'rake db:seed'
 * Rails 3 RC or above required
 * An HTML5 compatible browser is required to use audio tags
-* While core functionality is tested via Cucumber and targeted Rspec code, some features like Highchart graphs are not properly tested
+* While core functionality is tested via Cucumber and targeted Rspec code, some features like Highchart graphs are not properly unit and integration tested
 * User authentication for survey management is not currently implemented
 * Moving to beta or production will require significant re-architecting and a DRYing/refactoring cycle (Heckle and Flog would be a good place to start)
 
