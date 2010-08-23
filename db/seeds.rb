@@ -12,13 +12,12 @@ require 'lib/sample_response_data.rb'
 #if STDIN.read =~ /y/
 puts "Existing records : #{Survey.count} surveys #{Question.count} questions #{Answer.count} answers"
 
-
-  puts "Deleting"
-  Survey.delete_all
-  Question.delete_all
-  Answer.delete_all
-  Respondent.delete_all
-  Response.delete_all
+puts "Deleting"
+Survey.delete_all
+Question.delete_all
+Answer.delete_all
+Respondent.delete_all
+Response.delete_all
 #else
 #  puts "Exiting"
 #  exit
