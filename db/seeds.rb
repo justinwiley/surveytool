@@ -8,7 +8,7 @@ require 'lib/sample_response_data.rb'
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
-puts "Delete existing database? (y followed by Ctrl+D to delete, anything followed by ctrl+d to skip)"
+#puts "Delete existing database? (y followed by Ctrl+D to delete, anything followed by ctrl+d to skip)"
 #if STDIN.read =~ /y/
   puts "Deleting"
   Survey.delete_all
