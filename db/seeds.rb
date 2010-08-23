@@ -28,6 +28,8 @@ survey_name = 'Satisfaction and Needs Assessment'
 survey = Survey.create! :name => survey_name, :spoken => File.new('public/sample_audio_wave.wav'),
   :desc => 'This is an example survey that showcases some of the features available in the Survey Tool application.'
 
+puts "Created survey #{survey}"
+
 survey.questions.create! :name => 'Please rate the process to get an appointment on a scale of 1 to 5, with 1 being the lowest and 5 being the highest.',
   :answer_type => 'range', :range => 5, :spoken => File.new('public/testing.wav')
 
@@ -57,6 +59,8 @@ question.answers.create! :name => 'C', :text => 'Satisfied.'
 question.answers.create! :name => 'E', :text => 'Neither Satisfied or Disatisfied.'
 question.answers.create! :name => 'F', :text => 'Somewhat Dissatisfied.'
 question.answers.create! :name => 'G', :text => 'Very Dissatisfied.'
+
+puts "Created #{Question.count} questions #{Answer.count} answers"
 
 SampleResponseData.generate(survey_name,Date.today - 30,Date.today,true,true)
 
