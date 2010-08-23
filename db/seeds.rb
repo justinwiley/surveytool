@@ -10,6 +10,9 @@ require 'lib/sample_response_data.rb'
 
 #puts "Delete existing database? (y followed by Ctrl+D to delete, anything followed by ctrl+d to skip)"
 #if STDIN.read =~ /y/
+puts "Existing records : #{Survey.count} surveys #{Question.count} questions #{Answer.count} answers"
+
+
   puts "Deleting"
   Survey.delete_all
   Question.delete_all
