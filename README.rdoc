@@ -1,20 +1,20 @@
 = Clinical Survey Tool
 
-The Clinical Survey Tool is a web-application designed to assist small clinics with data-gathering and analysis.  It is designed to provide clinicians with constant patient feedback be allowing them to create, collect, and analyze exit interviews for patients.
+The Clinical Survey Tool is a web-application designed to assist small clinics with data-gathering and analysis.  It's designed to provide clinicians with constant patient feedback by allowing them to create, collect, and analyze exit interviews for patients.
 
 == Why collect feedback?
 
 A typical visit to a clinic involves a number of interactions between the patient, clinicians and staff.  A patient has to schedule an appointment, find the office, arrive and wait to be seen.  During their visit with a clinician, they are asked to describe current symptoms, prior diagnoses, family history.  They are asked to take tests at the clinic, or schedule new appointments.
 
-The patient's description of their symptoms, test results, and schedule are typically recorded in a paper-based charting or EMR systems.  But their interactions and how they feel about their experience at the clinic, why they chose the clinic, whether they plan on coming back and what could be done to improve the experience, are not.
+The patient's description of their symptoms, test results, and schedule are typically recorded in paper-based charting or EMR systems.  But their interactions and how they feel about their experience at the clinic, why they chose the clinic, whether they plan on coming back and what could be done to improve the experience, are not.
 
-Using the Clinic Survey Tool, clinicians and/or staff can:
+Using the Clinic Survey Tool, clinicians and staff can:
 
 * Create and manage customized surveys
 * Administer the surveys to patients, recording their feedback
 * View detailed analysis of the results, either through the application or by importing into a spreadsheet application like Open Office or Excel
 
-Clinicians can then apply what they learn from the analysis of the software to improving patient experiences, and therefore patient outcomes.  Ideally this would be a long-running, continual process.
+Clinicians can then apply what they learn from the analysis of the software to improving patient experiences, and therefore patient outcomes.  Collecting and responding to this information over time means clinicians can continually react to and work to improve a patient's perception of the visit.
 
 == Accessible Surveys
 
@@ -24,7 +24,7 @@ To make the surveys as accessible as possible for patients, question and answer 
 
 == Important Note
 
-Please note that this software is an alpha prototype, meaning some planned functionality is not yet fully implemented, and the software has not been used in a production environment.  See technical notes below for details.  This software is as-is, no warranty expressed or implied.  See the license information below for details.
+Please note that this software is an alpha prototype, meaning some planned functionality is not yet fully implemented, and the software has not been used in a production environment.  See technical notes below for details.  This software is as-is, no warranty expressed or implied.  See the license information for details.
 
 == Technical Notes
 
