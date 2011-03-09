@@ -1,4 +1,6 @@
-require 'lib/sample_response_data.rb'
+#require '../../lib/sample_response_data.rb'
+
+require Rails.root.join('lib/sample_response_data.rb')
 
 Given /^the following reports:$/ do |reports|
   Report.create!(reports.hashes)

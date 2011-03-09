@@ -12,22 +12,22 @@
         -if @display_question.multiple_choice?
           -for answer in @display_question.answers
             %tr
-              %td
-                =answer.name
+              %td.answer
+                ="#{answer.name}. "
               %td
                 =answer.text
-              %td
-                =radio_button_tag :answer, answer.id, {}, {:class => 'largeradio'}
+              %td.answer{:onMouseOver=>"this.style.backgroundColor='#FFF380';", :onMouseOut=>"this.style.backgroundColor='#FFFFFF';"}
+                =radio_button_tag :answer, answer.id, {}, {:class => 'largeradio',}
             %br
         -else
           -display_range = (1..@display_question.range.to_i)
           %tr
             -for answer_num in display_range
-              %td.bigtext
-                = "#{answer_num}"
+              %td.bigtext.answer
+                = answer_num.is_a?(Integer) ? "#{answer_num}" : "#{answer_num}."
           %tr
             -for answer_num in display_range
-              %td
+              %td.answer{:onMouseOver=>"this.style.backgroundColor='#FFF380';", :onMouseOut=>"this.style.backgroundColor='#FFFFFF';"}
                 = radio_button_tag :range, answer_num, {}, {:class => 'largeradio'}
       %p
         =submit_tag "Previous Question" if @previous_question

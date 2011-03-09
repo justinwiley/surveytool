@@ -1,5 +1,5 @@
 body {
-  background-color: #4b7399;
+  background-color: #fff;
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px; }
 
@@ -20,12 +20,42 @@ a {
   height: 1.5em;
   width: 1.5em; }
 
+.answer {
+	text-align: center;
+	padding: 10px;
+}
+
+table.styled{
+	width:100%;
+	border-collapse:collapse;
+}
+
+.styled td, .styled th 
+{
+	font-size:1.2em;
+	border:1px solid #aaa;
+	padding:3px 7px 2px 7px;
+}
+.styled th 
+{
+	font-size:1.4em;
+	text-align:left;
+	padding-top:5px;
+	padding-bottom:4px;
+	background-color:#777;
+	color:#fff;
+}
+.styled tr.alt td 
+{
+	color:#000;
+	background-color:#EAF2D3;
+}
+
 #container {
   width: 75%;
   margin: 0 auto;
   background: white;
   padding: 20px 40px;
-  border: solid 1px black;
   margin-top: 20px; }
 
 #flash_notice,

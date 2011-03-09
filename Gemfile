@@ -1,12 +1,18 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0.rc'
+gem 'rails', '3.0.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'mysql'
+
+# install mysql via dmg:
+# http://geryit.com/blog/2011/01/installing-mysql-with-rails-on-mac-os-x-snow-leopard/
+# and then:
+# export ARCHFLAGS="-arch x86_64" ; sudo gem install --no-rdoc --no-ri ruby-mysql -- --with-mysql-dir=/usr/local --with-mysql-config=/usr/local/mysql/bin/mysql_config
+# for native bindings on mac
+gem 'ruby-mysql'
 gem 'paperclip'
 gem "acts_as_list"
 
@@ -43,17 +49,19 @@ gem 'fastercsv'
 
 
 group :test do
-  gem 'rspec-rails', '2.0.0.beta.11'
+  #gem 'rspec-rails', '2.0.0.beta.11'
+  gem "rspec-rails", ">= 2.5.0"
 end
 
 group :development do
-  gem "rails-footnotes"
+  #gem "rails-footnotes"
 end
 
 group :cucumber do
   gem 'cucumber-rails'
   gem 'capybara'
   gem "rspec"
-  gem 'rspec-rails', '2.0.0.beta.11'
-  gem 'term-ansicolor'
+  #gem 'rspec-rails', '2.0.0.beta.11'
+  gem "rspec-rails", ">= 2.5.0"
+	gem 'term-ansicolor'
 end
