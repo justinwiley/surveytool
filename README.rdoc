@@ -1,6 +1,6 @@
 = SECURITY WARNING
 
-*This project was created several years ago, and it depends on versions of Rails that have security vulnerabilities.  If you use or repurpose this project, you should update all insecure dependencies.*
+**This project was created several years ago, and it depends on versions of Rails that have security vulnerabilities.  If you use or repurpose this project, you should update all insecure dependencies.**
 
 = Clinical Survey Tool
 
