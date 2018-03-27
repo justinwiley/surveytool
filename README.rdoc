@@ -1,3 +1,7 @@
+= SECURITY WARNING
+
+*This project was created several years ago, and it depends on versions of Rails that have security vulnerabilities.  If you use or repurpose this project, you should update all insecure dependencies.*
+
 = Clinical Survey Tool
 
 The Clinical Survey Tool is a web-application designed to assist small clinics with data-gathering and analysis.  It's designed to provide clinicians with constant patient feedback by allowing them to create, collect, and analyze exit interviews for patients.
